@@ -17,15 +17,15 @@ dis_width = 800
 dis_height = 600
 
 dis = pygame.display.set_mode((dis_width, dis_height))
-pygame.display.set_caption('Snake Game by metodi94')
+pygame.display.set_caption('Improved Snake Game by metodi94')
 
 clock = pygame.time.Clock()
 snake_block = 10
-snake_speed = 30
+snake_speed = 15  # Reduced speed
 
 # Fonts
-font_style = pygame.font.SysFont(None, 50)
-score_font = pygame.font.SysFont(None, 35)
+font_style = pygame.font.SysFont('bahnschrift', 25)
+score_font = pygame.font.SysFont('comicsansms', 35)
 
 def Your_score(score):
     value = score_font.render("Your Score: " + str(score), True, yellow)
@@ -39,7 +39,7 @@ def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
-def gameLoop():  # main function
+def gameLoop():  # Main function
     game_over = False
     game_close = False
 
@@ -114,6 +114,8 @@ def gameLoop():  # main function
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
+            if Length_of_snake % 5 == 0:  # Increase speed after certain length
+                snake_speed += 1
 
         clock.tick(snake_speed)
 
